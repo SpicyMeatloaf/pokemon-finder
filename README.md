@@ -4,17 +4,19 @@ An app for finding out where a Pokemon resides in the region selected.
 
 Technologies
 ------------
-* Javascript
-* HTML/CSS
+* JavaScript
+* HTML
+* CSS
 * JQuery
 
 Screenshots
 -----------
-*[Overview][]
+*[Overview]()
 
 Getting Started
 ---------------
-[Link to Project][https://spicymeatloaf.github.io/pokemon-finder/]
+[Link to Project](https://spicymeatloaf.github.io/pokemon-finder/)
+
 Instructions for most current iteration:
 1. Type in a valid Pokemon name (not case sensitive) and press Search.
 1. Wait a few seconds, and then press Display Results.
