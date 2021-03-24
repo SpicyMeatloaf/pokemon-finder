@@ -2,6 +2,7 @@
 let userInput;
 let currentRegion = "kanto";
 const $input = $('input[type="text"]');
+
 let regions = {
   kanto: [],
   johto:[],
@@ -42,9 +43,9 @@ function handleGetData(event) {
         (data) => {
           let pokeLink = 'https://pokeapi.co/api/v2/pokemon/' + data.id + '/encounters'
           // collect location encounter info
+          clearLocationList(regions);
           getData(pokeLink, getPokemonLocations);
           $input.val('');
-          render();
         },
         (error) => {
          console.log('bad request', error);
@@ -73,6 +74,7 @@ function getPokemonLocations(){
       getData(f.location_area.url, getLocations);
     }
   }
+  render();
 }
 
 // nested function to get an entity's English name
@@ -102,7 +104,14 @@ function getLocationRegionPair(){
   } 
 }
 
+// function to clear the listed regions
+function clearLocationList(objList){
+    for (const e in objList) {
+        objList[e] = [];
+    }
+}
+
 // function to display retrieved data
 function render() {
-  console.log(regions);
+    console.log(regions);
 }
