@@ -7,19 +7,41 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script defer src="js/script.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <title>Pokemon Finder</title>
-    
-    <h1>Poke Map</h1>
-<main>
-  
-</main>
-
-<form>
-  <input type="text" placeholder="Pokemon"/>
-  <input type="submit" value="Get Pokemon Spots" />
-</form>
+    <title>The Poke Finder</title>
 </head>
 <body>
+
+    <nav>
+        <div>Home</div>
+        <div>About</div>
+    </nav>
+    <aside>
+
+        <h1>Poke Finder</h1>
+        <form>
+            <input type="text" placeholder="Name of Pokemon"/>
+            <input type="submit" value="Search" />
+        </form>
+
+        <h3>Results</h2>
+        <ul id="region-results">
+        </ul>
+
+    </aside>
+
+    <main class="flex-ctr">
+        
+        <div class="dropdown">
+            <button onclick="dropDownRegion()" class="dropbtn">Dropdown</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+        </div> 
+        <img src="https://static.wikia.nocookie.net/pokemon/images/a/ae/Kanto_(Let's_Go).png">
+    </main>
+    <footer class="flex-ctr">All Rights Reserved &copy; 2021</footer>
 
 </body>
 </html>

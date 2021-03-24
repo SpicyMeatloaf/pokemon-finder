@@ -17,17 +17,6 @@ let regions = {
 // form submission
 $('form').on('submit', handleGetData);
 
-  // $.ajax({
-  //     url: 'https://pokeapi.co/api/v2/region/'
-  //   }).then(
-  //     (data) => {
-  //       console.log(data);
-  //     },
-  //     (error) => {
-  //     console.log('bad request', error);
-  //     }
-  // );  
-
 // retrieving data from API
 function handleGetData(event) {
     event.preventDefault();
@@ -115,3 +104,23 @@ function clearLocationList(objList){
 function render() {
     console.log(regions);
 }
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function dropDownRegion() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  } 
