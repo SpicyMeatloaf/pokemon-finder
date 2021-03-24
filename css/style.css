@@ -44,8 +44,9 @@ div {
     width: 50%;
 }
 #region-map {
-    max-width:75%;
-    height:auto;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 #current {
     display: flex;
