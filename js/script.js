@@ -18,14 +18,6 @@ updateRegion();
 // form submission
 $('form').on('submit', handleGetData);
 
-regions.johto.push("ok");
-regions.johto.push("hi");
-for(const e of regions.johto){
-
-    console.log(e);
-}
-console.log(regions.johto);
-
 // retrieving data from API
 function handleGetData(event) {
     event.preventDefault();
@@ -41,15 +33,10 @@ function handleGetData(event) {
         (data) => {
           let pokeLink = 'https://pokeapi.co/api/v2/pokemon/' + data.id + '/encounters'
           // collect location encounter info
-        //   clearLocationList(regions);
+          clearLocationList(regions);
           getData(pokeLink, getPokemonLocations);
           $input.val('');
         },
-        (error) => {
-         console.log('bad request', error);
-        }
-    ).then(
-        () => render(regions),
         (error) => {
          console.log('bad request', error);
         }
@@ -122,15 +109,18 @@ function updateRegion(){
 }
 
 // function to display retrieved data
-function render(objList) {
+function render() {
     // for(const e in regions){
     //     console.log(regions[e]);
     // }
-    console.log(objList.johto);
-    console.log(objList);
-    console.log(objList.johto[2]);
-    // let location = ("<li>" + regions["johto"].pop() + "</li>");
-    // $('#region-results').append(location);
+    console.log(regions.johto);
+    console.log(regions);
+    console.log(regions.johto[0]);
+    $('#region-results').empty();
+    for(const location of regions["johto"]){
+        let listLoc = ("<li>" + location + "</li>");
+        $('#region-results').append(listLoc);
+    }
 }
 
 
