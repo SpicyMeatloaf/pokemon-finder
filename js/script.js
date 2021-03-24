@@ -31,9 +31,13 @@ function handleGetData(event) {
         url:'https://pokeapi.co/api/v2/pokemon/' + userInput
       }).then(
         (data) => {
-          let pokeLink = 'https://pokeapi.co/api/v2/pokemon/' + data.id + '/encounters'
-          // collect location encounter info
+          let pokeLink = 'https://pokeapi.co/api/v2/pokemon/' + data.id + '/encounters';
+          
+          // clean up
           clearLocationList(regions);
+          $('#region-results').empty();
+
+          // collect location encounter info
           getData(pokeLink, getPokemonLocations);
           renderPoke(data);
           $input.val('');
