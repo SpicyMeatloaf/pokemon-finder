@@ -1,6 +1,6 @@
 // global variables and elements
 let userInput;
-let currentRegion = "kanto";
+let currentRegion = "johto";
 const $input = $('input[type="text"]');
 
 let regions = {
@@ -14,8 +14,17 @@ let regions = {
   galar:[]
 }
 
+updateRegion();
 // form submission
 $('form').on('submit', handleGetData);
+
+regions.johto.push("ok");
+regions.johto.push("hi");
+for(const e of regions.johto){
+
+    console.log(e);
+}
+console.log(regions.johto);
 
 // retrieving data from API
 function handleGetData(event) {
@@ -32,10 +41,15 @@ function handleGetData(event) {
         (data) => {
           let pokeLink = 'https://pokeapi.co/api/v2/pokemon/' + data.id + '/encounters'
           // collect location encounter info
-          clearLocationList(regions);
+        //   clearLocationList(regions);
           getData(pokeLink, getPokemonLocations);
           $input.val('');
         },
+        (error) => {
+         console.log('bad request', error);
+        }
+    ).then(
+        () => render(regions),
         (error) => {
          console.log('bad request', error);
         }
@@ -63,19 +77,19 @@ function getPokemonLocations(){
       getData(f.location_area.url, getLocations);
     }
   }
-  render();
 }
 
 // nested function to get an entity's English name
-function getName(){
-  for(const e of arguments){
-    for(const f of e.names){
+function getName(data){
+//   for(const e of data){
+    for(const f of data.names){
       if(f.language.name == 'en')
       {
         return f.name;
       }
     }
-  } 
+    
+//   } 
 }
 
 // nested sent function to get the location that contains the area
@@ -90,7 +104,10 @@ function getLocationRegionPair(){
   for(const e of arguments){
     // add location to associated region
     regions[e.region.name].push(getName(e));
+
+    // console.log(regions[e.region.name]);
   } 
+//   render();
 }
 
 // function to clear the listed regions
@@ -100,10 +117,25 @@ function clearLocationList(objList){
     }
 }
 
-// function to display retrieved data
-function render() {
-    console.log(regions);
+function updateRegion(){
+    $('#current').append(currentRegion);
 }
+
+// function to display retrieved data
+function render(objList) {
+    // for(const e in regions){
+    //     console.log(regions[e]);
+    // }
+    console.log(objList.johto);
+    console.log(objList);
+    console.log(objList.johto[2]);
+    // let location = ("<li>" + regions["johto"].pop() + "</li>");
+    // $('#region-results').append(location);
+}
+
+
+
+
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
