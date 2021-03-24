@@ -34,6 +34,19 @@ nav, footer {
 div {
     margin: 10px;
 }
+#pokemon {
+    text-align: center;
+}
+#poke-sprite {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#region-map {
+    max-width:100%;
+    height:auto;
+}
 .flex-ctr {
     display: flex;
     justify-content: center;

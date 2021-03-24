@@ -1,6 +1,6 @@
 // global variables and elements
 let userInput;
-let currentRegion = "johto";
+let currentRegion = "kanto";
 const $input = $('input[type="text"]');
 
 let regions = {
@@ -35,6 +35,7 @@ function handleGetData(event) {
           // collect location encounter info
           clearLocationList(regions);
           getData(pokeLink, getPokemonLocations);
+          renderPoke(data);
           $input.val('');
         },
         (error) => {
@@ -68,15 +69,12 @@ function getPokemonLocations(){
 
 // nested function to get an entity's English name
 function getName(data){
-//   for(const e of data){
     for(const f of data.names){
       if(f.language.name == 'en')
       {
         return f.name;
       }
     }
-    
-//   } 
 }
 
 // nested sent function to get the location that contains the area
@@ -91,10 +89,7 @@ function getLocationRegionPair(){
   for(const e of arguments){
     // add location to associated region
     regions[e.region.name].push(getName(e));
-
-    // console.log(regions[e.region.name]);
   } 
-//   render();
 }
 
 // function to clear the listed regions
@@ -105,26 +100,39 @@ function clearLocationList(objList){
 }
 
 function updateRegion(){
-    $('#current').append(currentRegion);
+    let regName = currentRegion.charAt(0).toUpperCase() + currentRegion.slice(1);
+    $('#current').append(regName);
 }
 
 // function to display retrieved data
 function render() {
-    // for(const e in regions){
-    //     console.log(regions[e]);
-    // }
-    console.log(regions.johto);
-    console.log(regions);
-    console.log(regions.johto[0]);
+    // console.log(regions);
+    // console.log(regions.johto[0]);
+
     $('#region-results').empty();
-    for(const location of regions["johto"]){
+    for(const location of regions[currentRegion]){
         let listLoc = ("<li>" + location + "</li>");
         $('#region-results').append(listLoc);
     }
 }
 
+// function to display pokemon's name and front sprite
+function renderPoke(data){
+    let pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    $('#pokemon').html(pokeName);
 
+    let frontImg = '<img id="poke-sprite" src="' + data.sprites["front_default"] + '" />';
+    if(!document.getElementById("poke-sprite")){
+        $('#pokemon').append(frontImg);
+    }
+    else{
+        $('#poke-sprite').attr("src", frontImg);
+    }
+}
 
+function changeRegion(){
+
+}
 
 
 /* When the user clicks on the button,
